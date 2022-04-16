@@ -1,6 +1,8 @@
 require('dotenv').config();
 var mongoose = require('mongoose');
-mongodb+srv://4bDZt9pYG4hHX75njmeYYe9NC:<password>@cluster0.54jhh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+mongoose.connect('mongodb+srv://4bDZt9pYG4hHX75njmeYYe9NC:eroV4vrh69SVLzjoLGezuPFQgpqAqgvkg6KuL37pucu83TVgsaT7bb4@cluster0.54jhh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+, { useNewUrlParser: true, useUnifiedTopology: true });
+
 let Person;
 
 const createAndSavePerson = (done) => {
