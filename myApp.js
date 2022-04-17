@@ -1,17 +1,17 @@
-require('dotenv').config();
-var mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://4bDZt9pYG4hHX75njmeYYe9NC:eroV4vrh69SVLzjoLGezuPFQgpqAqgvkg6KuL37pucu83TVgsaT7bb4@cluster0.54jhh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-, { useNewUrlParser: true, useUnifiedTopology: true });
+require("dotenv").config();
+var mongoose = require("mongoose");
+mongoose.connect(
+  "mongodb+srv://4bDZt9pYG4hHX75njmeYYe9NC:eroV4vrh69SVLzjoLGezuPFQgpqAqgvkg6KuL37pucu83TVgsaT7bb4@cluster0.54jhh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true }
+);
 
 const { Schema } = mongoose;
 
 const personSchema = new Schema({
-  name:  String,
-  age: String,
-  favoriteFoods: String,
-  
+  name: { type: String, required: true },
+  age: Number,
+  favoriteFoods: [String],
 });
-
 
 let Person;
 
