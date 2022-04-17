@@ -1,9 +1,6 @@
 require("dotenv").config();
 var mongoose = require("mongoose");
-mongoose.connect(
-  "mongodb+srv://4bDZt9pYG4hHX75njmeYYe9NC:eroV4vrh69SVLzjoLGezuPFQgpqAqgvkg6KuL37pucu83TVgsaT7bb4@cluster0.54jhh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useUnifiedTopology: true }
-);
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const { Schema } = mongoose;
 
@@ -122,7 +119,15 @@ const removeManyPeople = (done) => {
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";
-  Person.find({ favoriteFoods: foodToSearch });
+  let query = Person.find({ favoriteFoods: foodToSearch });
+  query
+    .sort({ name: "asc" })
+    .limit(2)
+    .select("-age")
+    .exec(function (err, data) {
+      if (err) return console.error(err);
+      return done(null, data);
+    });
 };
 
 /** **Well Done !!**
