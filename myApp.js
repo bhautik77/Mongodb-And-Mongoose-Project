@@ -89,7 +89,6 @@ const findEditThenSave = (personId, done) => {
       if (err) return console.error(err);
       return done(null, data);
     });
-    return done(null, personEdit);
   });
 };
 
