@@ -23,17 +23,10 @@ const createAndSavePerson = (done) => {
     age: 25,
     favoriteFoods: ["panipuri", "pizza", "khichadi"],
   });
-  person.save(
-    {
-      name: "jhon",
-      age: 25,
-      favoriteFoods: ["panipuri", "pizza", "khichadi"],
-    },
-    function (err, data) {
-      if (err) return console.error(err);
-      return done(null, data);
-    }
-  );
+  person.save(function (err, data) {
+    if (err) return console.error(err);
+    return done(null, data);
+  });
 };
 
 let arrayOfPeople = [
@@ -92,13 +85,12 @@ const findEditThenSave = (personId, done) => {
   Person.findById(personId, function (err, personEdit) {
     if (err) return console.error(err);
     personEdit.favoriteFoods.push(foodToAdd);
-    personEdit.save( personEdit, function (err, data) {
+    personEdit.save(function (err, data) {
       if (err) return console.error(err);
       return done(null, data);
     });
     return done(null, personEdit);
   });
-  
 };
 
 const findAndUpdate = (personName, done) => {
