@@ -15,15 +15,40 @@ const personSchema = new Schema({
 
 let Person;
 
-Person = mongoose.model('Person', personSchema);
-const person = new Person({ name: "jhon", age: 25, favoriteFoods: ['panipuri','pizza','khichadi'] });
+Person = mongoose.model("Person", personSchema);
 
 const createAndSavePerson = (done) => {
-  person.save(function (err) {
-  if (err) return done(err);
-  return done(null, );
-});
-  done(null /*, data*/);
+  // const person = new Person({
+  //   name: "jhon",
+  //   age: 25,
+  //   favoriteFoods: ["panipuri", "pizza", "khichadi"],
+  // });
+  Person.create([
+    {
+      name: "jhon",
+      age: 25,
+      favoriteFoods: ["panipuri", "pizza", "khichadi"],
+    },
+        {
+      name: "dev",
+      age: 29,
+      favoriteFoods: ["bhel", "pizza", "burger"],
+    },
+        {
+      name: "tina",
+      age: 23,
+      favoriteFoods: ["dabeli", "poha", "vadapav"],
+    },
+        {
+      name: "scarlett",
+      age: 26,
+      favoriteFoods: ["noodles", "ramen", "shusi"],
+    }],
+    function (err, data) {
+      if (err) return console.error(err);
+      return done(null, data);
+    }
+  );
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
